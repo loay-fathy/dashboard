@@ -10,12 +10,12 @@ import {
   Resize,
   DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
-import { scheduleData } from "../data/dummy";
-import { Header } from "../components";
+import { scheduleData } from "../../data/dummy";
+import { Header } from "../../components";
 
 const Calendar = () => {
   return (
-    <div className="m-2 md:md-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+    <div className="m-2 md:md-10 mt-24 p-2 md:p-10 bg-white dark:bg-boxdark rounded-3xl">
       <Header category="App" title="Calendar" />
       <ScheduleComponent
         height="650px"

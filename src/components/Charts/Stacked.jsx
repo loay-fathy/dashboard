@@ -5,46 +5,37 @@ import {
   SeriesDirective,
   Inject,
   Legend,
-  StackingColumnSeries,
   Category,
+  StackingColumnSeries,
   Tooltip,
-} from "@syncfusion/ej2-react-charts/src";
+} from "@syncfusion/ej2-react-charts";
+
 import {
   stackedCustomSeries,
   stackedPrimaryXAxis,
   stackedPrimaryYAxis,
 } from "../../data/dummy";
 import { useStateContext } from "../../context/ContextProvider";
+// import { useStateContext } from "../../contexts/ContextProvider";
 
-const Stacked = ({ width, height }) => {
-  const { currentMode, currentColor } = useStateContext();
+const Stacked = () => {
+  const { chartColor } = useStateContext();
 
   return (
     <ChartComponent
-      width={width}
-      height={height}
-      id="charts"
+      id="chart1"
       primaryXAxis={stackedPrimaryXAxis}
       primaryYAxis={stackedPrimaryYAxis}
       chartArea={{ border: { width: 0 } }}
+      title="Sales Comparison"
       tooltip={{ enable: true }}
       legendSettings={{ background: "white" }}
-      background={currentMode === "Dark" ? "#33373E" : ""}
+      background={chartColor === "dark" ? "#25282a" : "white"}
     >
-      <Inject services={[Tooltip, Legend, StackingColumnSeries, Category]} />
+      <Inject services={[StackingColumnSeries, Category, Legend, Tooltip]} />
       <SeriesCollectionDirective>
         {stackedCustomSeries.map((item, index) => (
-          <SeriesDirective
-            key={index}
-            {...item}
-            fill={
-              item.coloring === true
-                ? currentColor
-                : currentMode === "Dark"
-                ? "rgb(229 231 235)"
-                : "rgb(64, 64, 65)"
-            }
-          />
+          <SeriesDirective key={index} {...item} />
         ))}
       </SeriesCollectionDirective>
     </ChartComponent>
